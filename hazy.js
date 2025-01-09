@@ -226,7 +226,6 @@
   Spicetify.Player.addEventListener("songchange", onSongChange);
   onSongChange();
   windowControls();
-  galaxyFade();
 
   function scrollToTop() {
     const element = document.querySelector(".main-entityHeader-container");
@@ -472,72 +471,6 @@
         const lyricsObserver = new MutationObserver(lyricsCallback);
         const lyricsObserverConfig = { childList: true };
         lyricsObserver.observe(lyricsContentWrapper, lyricsObserverConfig);
-      }
-    );
-  }
-
-  function galaxyFade() {
-    //Borrowed from the Galaxy theme | https://github.com/harbassan/spicetify-galaxy/
-    // add fade and dimness effects to mainview and the the artist image on scroll
-    waitForElement(
-      [".Root__main-view [data-overlayscrollbars-viewport]"],
-      ([scrollNode]) => {
-        scrollNode.addEventListener("scroll", () => {
-          //artist fade
-          const scrollValue = scrollNode.scrollTop;
-          const artist_fade = Math.max(0, (-0.3 * scrollValue + 100) / 100);
-          document.documentElement.style.setProperty(
-            "--artist-fade",
-            artist_fade
-          );
-
-          const fadeDirection =
-            scrollNode.scrollTop === 0
-              ? "bottom"
-              : scrollNode.scrollHeight -
-                  scrollNode.scrollTop -
-                  scrollNode.clientHeight ===
-                0
-              ? "top"
-              : "full";
-          scrollNode.setAttribute("fade", fadeDirection);
-
-          // fade
-          if (scrollNode.scrollTop === 0) {
-            scrollNode.setAttribute("fade", "bottom");
-          } else if (
-            scrollNode.scrollHeight -
-              scrollNode.scrollTop -
-              scrollNode.clientHeight ===
-            0
-          ) {
-            scrollNode.setAttribute("fade", "top");
-          } else {
-            scrollNode.setAttribute("fade", "full");
-          }
-        });
-      }
-    );
-
-    waitForElement(
-      [".Root__nav-bar [data-overlayscrollbars-viewport]"],
-      ([scrollNode]) => {
-        scrollNode.setAttribute("fade", "bottom");
-        scrollNode.addEventListener("scroll", () => {
-          // fade
-          if (scrollNode.scrollTop === 0) {
-            scrollNode.setAttribute("fade", "bottom");
-          } else if (
-            scrollNode.scrollHeight -
-              scrollNode.scrollTop -
-              scrollNode.clientHeight ===
-            0
-          ) {
-            scrollNode.setAttribute("fade", "top");
-          } else {
-            scrollNode.setAttribute("fade", "full");
-          }
-        });
       }
     );
   }
