@@ -4,6 +4,16 @@
     return;
   }
 
+  const originalSetProperty = CSSStyleDeclaration.prototype.setProperty;
+  CSSStyleDeclaration.prototype.setProperty = function (property, value, priority) {
+    if (property === '--top-bar-opacity') {
+      const newValue = value > 0 ? 1 : 0;
+      return originalSetProperty.call(this, property, newValue, priority);
+    }
+
+    return originalSetProperty.call(this, property, value, priority);
+  };
+
   console.log("Hazy is running");
 
   function getAlbumInfo(uri) {
