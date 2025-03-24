@@ -147,6 +147,7 @@ border-radius: 8px !important;
 }
 
 .main-yourLibraryX-libraryContainer {
+background-color: transparent;
 --background-highlight: rgba(255, 255, 255, 0.05) !important;
 --background-press: rgba(255, 255, 255, 0.05);
 }
@@ -1437,6 +1438,10 @@ mask-image: linear-gradient(transparent 0%,
 .FUYNhisXTCmbzt9IDxnT {
 --lyrics-color-background: !important;
 padding-top: 80px;
+}
+
+.BeautifulLyricsBackground {
+    border-radius: 8px;
 }
 
 /* fix artist page being visible under lyrics cinema */

@@ -959,7 +959,10 @@
 
     Spicetify.PopupModal.display({ title: "Hazy Settings", content: content });
   });
-  homeEdit.element.classList.toggle("hidden", false);
+
+  const btn = homeEdit.element.querySelector('button');
+
+  btn.classList.add('Button-sc-1dqy6lx-0', 'Button-buttonTertiary-medium-iconOnly-disabled-useBrowserDefaultFocusStyle-condensed')
 
   // startup parse
   loopOptions("/");
